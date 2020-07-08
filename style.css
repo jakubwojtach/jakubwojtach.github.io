@@ -54,8 +54,10 @@ footer {
     border: 1px solid #343a33;
     border-radius: 5px;
     font-size: 20px;
+    text-align: center;
     line-height: 26px;
 }
+
 .word-first {
     font-weight: 200;
 }
@@ -116,4 +118,12 @@ footer {
 .soon {
     margin: 10px 0 30px;
     font-weight: 200;
+}
+@media screen and (max-width: 600px) {
+    .box {
+        padding: 20px;
+    }
+    header img {
+        transform: scale(1.1);
+    }
 }
