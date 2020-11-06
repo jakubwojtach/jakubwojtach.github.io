@@ -1,50 +1,54 @@
 import React from "react";
 import { Link } from "gatsby";
-import styled from "styled-components";
+import { createGlobalStyle } from "styled-components";
+import { StyledHeader, StyledList, StyledListItem } from './UI/Header';
 
-const StyledHeader = styled.header`
-  padding: 30px;
+const GlobalStyle = createGlobalStyle`
+  body {
+    margin: 0;
+  }
 `;
 
 const Layout = ({ children }) => {
   return (
     <>
+      <GlobalStyle />
       <StyledHeader>
-        <Link to="/" className="home">
+        <Link to="/">
           <img src="" alt="Logo" className='logo' />
         </Link>
-        <ul>
-          <li>
-            <Link to='#' className=''>
+        <StyledList>
+          <StyledListItem>
+            <Link to='/' activeClassName='active'>
               About
             </Link>
-          </li>
-          <li>
-            <Link to='#' className=''>
+          </StyledListItem>
+          <StyledListItem>
+            <Link to='/' activeClassName='active'>
               Works
             </Link>
-          </li>
-          <li>
-            <Link to='#' className=''>
+          </StyledListItem>
+          <StyledListItem>
+            <Link to='/' activeClassName='active'>
               Testimonials
             </Link>
-          </li>
-          <li>
-            <Link to='#' className=''>
+          </StyledListItem>
+          <StyledListItem>
+            <Link to='/' activeClassName='active'>
               Clients
             </Link>
-          </li>
-          <li>
-            <Link to='#' className=''>
+          </StyledListItem>
+          <StyledListItem>
+            <Link to='/' activeClassName='active'>
               Blog
             </Link>
-          </li>
-          <li>
-            <Link to='#' className=''>
+          </StyledListItem>
+          <StyledListItem>
+            <Link to='/' activeClassName='active'>
               Contact
             </Link>
-          </li>
-        </ul>
+          </StyledListItem>
+        </StyledList>
       </StyledHeader>
       <main className='page-layout'>
         {children}

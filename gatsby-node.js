@@ -11,7 +11,9 @@ exports.createPages = async ({ actions, graphql }) => {
       }
     }
   `);
+
   const pages = result.data.wpgraphql.pages.nodes;
+
   pages.forEach(page => {
     actions.createPage({
       path: page.uri,
