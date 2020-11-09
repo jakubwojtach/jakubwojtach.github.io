@@ -30,7 +30,11 @@ const Layout = ({ children }) => {
         <StyledHeader>
           <PageContainer justify="space-between">
             <Link to="/">
-              <img src="/logo.svg" alt="Logo" className="logo" />
+              <img
+                src={state.isDark ? "/logo.svg" : "/logo-dark.svg"}
+                alt="Logo"
+                className="logo"
+              />
             </Link>
             <StyledList>
               <StyledListItem>

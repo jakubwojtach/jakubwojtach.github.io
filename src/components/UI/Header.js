@@ -19,7 +19,11 @@ export const StyledHeader = styled.header`
   width: 100%;
   display: flex;
   justify-content: space-between;
-  background: linear-gradient(180deg, #1e2233 0%, #2d2f4a 100%);
+  transition: all 200ms ease;
+  background: ${props => props.theme.headerBgColor};
+  .logo {
+    transition: all 200ms ease-in;
+  }
 `
 
 export const StyledList = styled.ul`
@@ -47,8 +51,10 @@ export const StyledListItem = styled.li`
   }
   a {
     text-decoration: none;
-    color: #fff;
+    color: ${props => props.theme.headerLinkColor};
     display: block;
+    transition: all 200ms ease;
+
     position: relative;
     &:after {
       content: "";
@@ -64,7 +70,7 @@ export const StyledListItem = styled.li`
       transition: opacity 200ms ease, transform 300ms ease-in;
     }
     &.active {
-      color: #15fea5;
+      color: ${props => props.theme.headerActiveLinkColor};
       &:after {
         transform: translate3d(0, 0, 0);
         opacity: 1;
