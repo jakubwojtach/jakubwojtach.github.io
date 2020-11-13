@@ -6,13 +6,18 @@ import {
   toggleDarkMode,
   setDarkModeInfo,
 } from "../../helpers/utils"
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-content: center;
+`
 
 const Container = styled.label`
   position: relative;
   display: inline-block;
   width: 40px;
   height: 15px;
-  margin: auto 0;
+  margin: auto 10px;
 `
 
 const Slider = styled.span`
@@ -48,7 +53,25 @@ const Input = styled.input`
   margin: 0;
 `
 
+const ThemeSwitchIndicator = styled.div`
+  width: 15px;
+  height: 15px;
+  background-color: ${props => props.theme.textIndicatorColor};
+  mask-image: ${props =>
+    props.dark ? "url(/theme-dark.svg)" : "url(/theme-light.svg)"};
+  mask-position: center;
+  mask-repeat: none;
+  mask-size: 15px;
+  opacity: 0.15;
+  transition: all 200ms ease;
+  margin: auto 0;
+  &.active {
+    opacity: 1;
+  }
+`
+
 const Switch = () => {
+  const { dispatch } = useContext(Context)
   useEffect(() => {
     const data = getDarkModeInfo()
     setIsChecked(data === "true" ? "checked" : "")
@@ -58,8 +81,6 @@ const Switch = () => {
     })
     setDarkModeInfo(data)
   }, [dispatch])
-
-  const { dispatch } = useContext(Context)
 
   const handleOnClick = () => {
     // Dispatch action
@@ -71,10 +92,19 @@ const Switch = () => {
   const [isChecked, setIsChecked] = useState("")
 
   return (
-    <Container>
-      <Input type="checkbox" checked={isChecked} onChange={handleOnClick} />
-      <Slider />
-    </Container>
+    <Wrapper>
+      <ThemeSwitchIndicator
+        className={`${isChecked === "" ? "active" : "inactive"}`}
+      />
+      <Container>
+        <Input type="checkbox" checked={isChecked} onChange={handleOnClick} />
+        <Slider />
+      </Container>
+      <ThemeSwitchIndicator
+        className={`${isChecked !== "" ? "active" : "inactive"}`}
+        dark
+      />
+    </Wrapper>
   )
 }
 

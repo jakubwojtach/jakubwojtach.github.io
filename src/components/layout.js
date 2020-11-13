@@ -1,16 +1,13 @@
+import styled from "styled-components"
 import React, { useReducer } from "react"
-import { Link } from "gatsby"
+import { createGlobalStyle, ThemeProvider } from "styled-components"
+import "@wordpress/block-library/build-style/style.css"
+
 import reducer from "./reducer"
 import Context from "./context"
 import { light, dark } from "./themes"
-import { createGlobalStyle, ThemeProvider } from "styled-components"
-import {
-  StyledHeader,
-  StyledList,
-  StyledListItem,
-  PageContainer,
-} from "./UI/Header"
-import Switch from "./UI/Switch"
+import Header from "./UI/Header"
+import Footer from "./UI/Footer"
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -18,54 +15,31 @@ const GlobalStyle = createGlobalStyle`
   }
 `
 
+export const PageContainer = styled.div`
+  max-width: 1200px;
+  width: 100%;
+  display: flex;
+  margin: 0 auto;
+  justify-content: ${props => (props.justify ? props.justify : "center")};
+  align-content: ${props => (props.align ? props.align : "center")};
+  flex-direction: ${props => (props.direction ? props.direction : "row")};
+  @media screen and (max-width: 1200px) {
+    margin: 0 20px;
+  }
+`
+
 const Layout = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, {
-    isDark: false,
+    isDark: true,
   })
 
   return (
     <Context.Provider value={{ state, dispatch }}>
       <ThemeProvider theme={state.isDark ? dark : light}>
         <GlobalStyle />
-        <StyledHeader>
-          <PageContainer justify="space-between">
-            <Link to="/">
-              <img
-                src={state.isDark ? "/logo.svg" : "/logo-dark.svg"}
-                alt="Logo"
-                className="logo"
-              />
-            </Link>
-            <StyledList>
-              <StyledListItem>
-                <Link to="/" activeClassName="active">
-                  About
-                </Link>
-              </StyledListItem>
-              <StyledListItem>
-                <Link to="/" activeClassName="active">
-                  Projects/Clients
-                </Link>
-              </StyledListItem>
-              <StyledListItem>
-                <Link to="/" activeClassName="active">
-                  Blog
-                </Link>
-              </StyledListItem>
-              <StyledListItem>
-                <Link to="/" activeClassName="active">
-                  Contact
-                </Link>
-              </StyledListItem>
-              <div className="header-separator" />
-            </StyledList>
-            <Switch />
-          </PageContainer>
-        </StyledHeader>
+        <Header isDark={state.isDark} />
         <main className="page-layout">{children}</main>
-        <footer>
-          <p>todo</p>
-        </footer>
+        <Footer isDark={state.isDark} />
       </ThemeProvider>
     </Context.Provider>
   )
