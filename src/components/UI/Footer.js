@@ -139,7 +139,11 @@ const Footer = ({ isDark }) => {
           <FooterNav>
             {items.map(item => (
               <FooterNavItem>
-                <Link to={item.url} activeClassName="active" key={item.id}>
+                <Link
+                  to={item.url}
+                  activeClassName="active"
+                  key={`footer-${item.id}`}
+                >
                   {item.label}
                 </Link>
               </FooterNavItem>

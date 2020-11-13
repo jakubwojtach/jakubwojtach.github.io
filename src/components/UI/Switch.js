@@ -1,11 +1,7 @@
 import React, { useContext, useEffect, useState } from "react"
 import Context from "../context"
 import styled from "styled-components"
-import {
-  getDarkModeInfo,
-  toggleDarkMode,
-  setDarkModeInfo,
-} from "../../helpers/utils"
+import { getDarkModeInfo, toggleDarkMode } from "../../helpers/utils"
 const Wrapper = styled.div`
   display: flex;
   justify-content: center;
@@ -72,21 +68,15 @@ const ThemeSwitchIndicator = styled.div`
 
 const Switch = () => {
   const { dispatch } = useContext(Context)
+
   useEffect(() => {
-    const data = getDarkModeInfo()
-    setIsChecked(data === "true" ? "checked" : "")
-    dispatch({
-      type: "SET_MODE",
-      payload: data,
-    })
-    setDarkModeInfo(data)
+    const { isDarkMode } = JSON.parse(getDarkModeInfo())
+    setIsChecked(isDarkMode === "true" ? "checked" : "")
   }, [dispatch])
 
   const handleOnClick = () => {
     // Dispatch action
     dispatch({ type: "TOGGLE_DARK_MODE" })
-    setIsChecked(state => (state === "" ? "checked" : ""))
-    toggleDarkMode()
   }
 
   const [isChecked, setIsChecked] = useState("")
@@ -97,7 +87,7 @@ const Switch = () => {
         className={`${isChecked === "" ? "active" : "inactive"}`}
       />
       <Container>
-        <Input type="checkbox" checked={isChecked} onChange={handleOnClick} />
+        <Input type="checkbox" onClick={handleOnClick} />
         <Slider />
       </Container>
       <ThemeSwitchIndicator

@@ -13178,6 +13178,11 @@ use-memo-one@^1.1.1:
   resolved "https://registry.yarnpkg.com/use-memo-one/-/use-memo-one-1.1.1.tgz#39e6f08fe27e422a7d7b234b5f9056af313bd22c"
   integrity sha512-oFfsyun+bP7RX8X2AskHNTxu+R3QdE/RC5IefMbqptmACAA/gfol1KDD5KRzPsGMa62sWxGZw+Ui43u6x4ddoQ==
 
+use-persisted-reducer@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/use-persisted-reducer/-/use-persisted-reducer-2.1.0.tgz#7bd9f3414764879f6b7552a258b6d97edf4870f2"
+  integrity sha512-M/vnxxD2LvBKvYCuuIMte1dlshbZBHlpjTtCYL7amI0HLN1zeFvOyzRp3/RKFPgR9F/e7yDPxSQEeTeSDrGtoA==
+
 use-sidecar@^1.0.1:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/use-sidecar/-/use-sidecar-1.0.3.tgz#17a4e567d4830c0c0ee100040e85a7fe68611e0f"

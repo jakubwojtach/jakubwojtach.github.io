@@ -110,7 +110,11 @@ const Header = ({ isDark }) => {
         <StyledList>
           {items.map(item => (
             <StyledListItem>
-              <Link to={item.url} activeClassName="active" key={item.id}>
+              <Link
+                to={item.url}
+                activeClassName="active"
+                key={`header-${item.id}`}
+              >
                 {item.label}
               </Link>
             </StyledListItem>

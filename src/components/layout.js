@@ -1,7 +1,8 @@
 import styled from "styled-components"
-import React, { useReducer } from "react"
+import React from "react"
 import { createGlobalStyle, ThemeProvider } from "styled-components"
 import "@wordpress/block-library/build-style/style.css"
+import createPersistedReducer from "use-persisted-reducer"
 
 import reducer from "./reducer"
 import Context from "./context"
@@ -29,9 +30,11 @@ export const PageContainer = styled.div`
 `
 
 const Layout = ({ children }) => {
-  const [state, dispatch] = useReducer(reducer, {
+  const usePersistedReducer = createPersistedReducer("isDark")
+  const initialState = {
     isDark: true,
-  })
+  }
+  const [state, dispatch] = usePersistedReducer(reducer, initialState)
 
   return (
     <Context.Provider value={{ state, dispatch }}>

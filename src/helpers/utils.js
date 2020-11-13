@@ -1,5 +1,5 @@
 export const getDarkModeInfo = () => {
-  return localStorage.getItem("isDark") || false
+  return localStorage.getItem("isDark")
 }
 
 export const setDarkModeInfo = isDark => {
@@ -7,7 +7,7 @@ export const setDarkModeInfo = isDark => {
 }
 
 export const toggleDarkMode = () => {
-  const isDark = getDarkModeInfo()
+  const isDark = getDarkModeInfo() || "false"
   setDarkModeInfo(isDark === "false")
   return isDark
 }
